@@ -29,13 +29,13 @@ export const MenuDrawer: VFC<Props> = memo(props => {
       <DrawerOverlay>
         <DrawerContent>
           <DrawerBody p={0} bg="gray.100">
-            <Button w="100%" onClick={onClickHome}>
+            <Button w="100%" as="nav" onClick={onClickHome}>
               TOP
             </Button>
-            <Button w="100%" onClick={onClickUserManagement}>
+            <Button w="100%" as="nav" onClick={onClickUserManagement}>
               ユーザー一覧
             </Button>
-            <Button w="100%" onClick={onClickSetting}>
+            <Button w="100%" as="nav" onClick={onClickSetting}>
               設定
             </Button>
           </DrawerBody>
