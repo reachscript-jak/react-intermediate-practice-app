@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -10,7 +10,10 @@ export const useAuth = () => {
   const history = useHistory();
   const { showMessage } = useMessage();
 
+  const [loading, setLoading] = useState(false);
+
   const login = useCallback((id: string) => {
+    setLoading(true);
     axios
       .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then(res => {
@@ -23,8 +26,9 @@ export const useAuth = () => {
       })
       .catch(() =>
         showMessage({ title: "ユーザーが見つかりません", status: "error" })
-      );
+      )
+      .finally(() => setLoading(false));
   }, []);
 
-  return { login };
+  return { login, loading };
 };

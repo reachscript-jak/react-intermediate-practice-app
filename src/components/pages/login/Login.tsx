@@ -1,19 +1,11 @@
 import { ChangeEvent, memo, useState, VFC } from "react";
-import {
-  Box,
-  Divider,
-  Flex,
-  Heading,
-  Input,
-  Stack,
-  useId
-} from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, Input, Stack } from "@chakra-ui/react";
 
 import { PrimaryButton } from "../../atoms/button/PrimaryButton";
 import { useAuth } from "../../../hooks/useAuth";
 
 export const Login: VFC = memo(() => {
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
 
   const [userId, setUserId] = useState("");
 
@@ -40,6 +32,7 @@ export const Login: VFC = memo(() => {
           <PrimaryButton
             isFullWidth
             disabled={userId === ""}
+            isLoading={loading}
             onClick={onClickLogin}
           >
             ログイン
